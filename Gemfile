@@ -20,3 +20,6 @@ gem "launchy", ">= 2.0.5", :group => :test
 gem "bson_ext", ">= 1.3.1"
 gem "mongoid", ">= 2.4.3"
 gem "devise", ">= 2.0.0"
+
+gem "thin"
+gem "heroku"
