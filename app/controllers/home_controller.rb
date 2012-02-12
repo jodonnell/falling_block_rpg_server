@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    render :layout => false
+  end
+
+  def specs
+    render :layout => false
   end
 end

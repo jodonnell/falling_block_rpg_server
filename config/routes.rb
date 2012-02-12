@@ -2,7 +2,8 @@ FallingBlockRpgServer::Application.routes.draw do
   
 
   root :to => "home#index"
-
+  match 'specs' => 'home#specs'
+  
   devise_for :users
   resources :users, :only => :show
 

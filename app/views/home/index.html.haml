@@ -1,3 +1,66 @@
-%h3 Home
-- @users.each do |user|
-  %p User: #{link_to user.name, user}
+!!!
+%html
+  %head
+    = javascript_include_tag "falling_block_rpg/jquery"
+    = javascript_include_tag "falling_block_rpg/class"
+    = javascript_include_tag "falling_block_rpg/block"
+    = javascript_include_tag "falling_block_rpg/shape"
+    = javascript_include_tag "falling_block_rpg/o"
+    = javascript_include_tag "falling_block_rpg/l"
+    = javascript_include_tag "falling_block_rpg/t"
+    = javascript_include_tag "falling_block_rpg/j"
+    = javascript_include_tag "falling_block_rpg/i"
+    = javascript_include_tag "falling_block_rpg/s"
+    = javascript_include_tag "falling_block_rpg/z"
+    = javascript_include_tag "falling_block_rpg/control"
+    = javascript_include_tag "falling_block_rpg/draw"
+    = javascript_include_tag "falling_block_rpg/create_shape"
+    = javascript_include_tag "falling_block_rpg/collision_detection"
+    = javascript_include_tag "falling_block_rpg/block_fall"
+    %title Game
+  %body
+    :javascript
+      var blockFall = new window.BlockFall(new CreateShape());
+      
+      (function() {
+          var onEachFrame;
+          if (window.webkitRequestAnimationFrame) {
+              onEachFrame = function(cb) {
+                  var _cb = function() { cb(); webkitRequestAnimationFrame(_cb); }
+                  _cb();
+              };
+          } else if (window.mozRequestAnimationFrame) {
+              onEachFrame = function(cb) {
+                  var _cb = function() { cb(); mozRequestAnimationFrame(_cb); }
+                  _cb();
+              };
+          } else {
+              onEachFrame = function(cb) {
+                  setInterval(cb, 1000 / 60);
+              }
+          }
+          
+          window.onEachFrame = onEachFrame;
+      })();
+      
+      var control = new Control();
+      window.onEachFrame(function() {
+          if (control.isMovingRight())
+              blockFall.moveRight();
+          if (control.isMovingLeft())
+              blockFall.moveLeft();
+          if (control.isRotatingClockwise())
+              blockFall.rotate();
+          if (control.isRotatingCounterClockwise())
+              blockFall.rotateCounterClockwise();
+      
+          if (control.isHardDropping())
+              blockFall.hardDrop();
+      
+      
+          blockFall.drawScreen(); 
+      
+          var speedFall = control.isSoftDropping();
+          blockFall.update(speedFall);
+      
+      });

@@ -1,0 +1,62 @@
+!!!
+%html
+  %head
+    %title Jasmine Spec Runner
+    = image_tag "jasmine_favicon.png"
+    = stylesheet_link_tag "jasmine"
+    = javascript_include_tag "falling_block_rpg/jasmine-1.1.0/jasmine"
+    = javascript_include_tag "falling_block_rpg/jasmine-1.1.0/jasmine-html"
+    = javascript_include_tag "falling_block_rpg/sinon"
+      
+    = javascript_include_tag "falling_block_rpg/spec/spec_helper.js"
+    = javascript_include_tag "falling_block_rpg/spec/block_fall_spec.js"
+    = javascript_include_tag "falling_block_rpg/spec/o_spec.js"
+    = javascript_include_tag "falling_block_rpg/spec/j_spec.js"
+    = javascript_include_tag "falling_block_rpg/spec/block_spec.js"
+    = javascript_include_tag "falling_block_rpg/spec/draw_spec.js"
+    = javascript_include_tag "falling_block_rpg/spec/create_shape_spec.js"
+    = javascript_include_tag "falling_block_rpg/spec/collision_detection_spec.js"
+
+    = javascript_include_tag "falling_block_rpg/jquery.js"
+    = javascript_include_tag "falling_block_rpg/class.js"
+    = javascript_include_tag "falling_block_rpg/block_fall.js"
+    = javascript_include_tag "falling_block_rpg/shape.js"
+    = javascript_include_tag "falling_block_rpg/j.js"
+    = javascript_include_tag "falling_block_rpg/o.js"
+    = javascript_include_tag "falling_block_rpg/l.js"
+    = javascript_include_tag "falling_block_rpg/t.js"
+    = javascript_include_tag "falling_block_rpg/i.js"
+    = javascript_include_tag "falling_block_rpg/s.js"
+    = javascript_include_tag "falling_block_rpg/z.js"
+    = javascript_include_tag "falling_block_rpg/draw.js"
+    = javascript_include_tag "falling_block_rpg/block.js"
+    = javascript_include_tag "falling_block_rpg/create_shape.js"
+    = javascript_include_tag "falling_block_rpg/collision_detection.js"
+    :javascript
+      (function() {
+        var jasmineEnv = jasmine.getEnv();
+        jasmineEnv.updateInterval = 1000;
+
+        var trivialReporter = new jasmine.TrivialReporter();
+
+        jasmineEnv.addReporter(trivialReporter);
+
+        jasmineEnv.specFilter = function(spec) {
+          return trivialReporter.specFilter(spec);
+        };
+
+        var currentWindowOnload = window.onload;
+
+        window.onload = function() {
+          if (currentWindowOnload) {
+            currentWindowOnload();
+          }
+          execJasmine();
+        };
+
+        function execJasmine() {
+          jasmineEnv.execute();
+        }
+
+      })();
+    %body
