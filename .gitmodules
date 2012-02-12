@@ -1,0 +1,3 @@
+[submodule "app/assets/javascripts/falling_block_rpg"]
+	path = app/assets/javascripts/falling_block_rpg
+	url = git@github.com:jodonnell/falling_block_rpg.git
