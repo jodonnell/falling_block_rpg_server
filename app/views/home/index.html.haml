@@ -27,7 +27,37 @@
 
     %title Game
   %body
+    #startForm
+      %label{:for => "junk_on"} Send Junk On:
+      %input#junk_on{:checked => "", :name => "junk", :type => "radio", :value => "on"}/
+      %label{:for => "junk_off"} Send Junk Off:
+      %input#junk_off{:name => "junk", :type => "radio", :value => "off"}/
+      %br/
+      %label{:for => "line_1"} 1 line:
+      %input#line_1{:name => "line_1", :type => "text", :value => "0"}/
+      %br/
+      %label{:for => "line_2"} 2 line:
+      %input#line_2{:name => "line_2", :type => "text", :value => "2"}/
+      %br/
+      %label{:for => "line_3"} 3 line:
+      %input#line_3{:name => "line_3", :type => "text", :value => "5"}/
+      %br/
+      %label{:for => "line_4"} 4 line:
+      %input#line_4{:name => "line_4", :type => "text", :value => "8"}/
+      %br/
+      %label{:for => "player_1"} Player 1 name:
+      %input#player_1{:name => "player_1", :type => "text", :value => ""}/
+      %br/
+      %label{:for => "player_1"} Player 2 name:
+      %input#player_2{:name => "player_2", :type => "text", :value => ""}/
+      %br/
+      %input#startGame{:type => "submit", :value => "Start"}
+      
     :javascript
+      $('#startGame').click(function() {
+      var junkLines = [$('#line_1').val(), $('#line_2').val(), $('#line_3').val(), $('#line_4').val()];
+      var options = new Options($('#junk_on').is(':checked'), junkLines, $('#player_1').val(), $('#player_2').val());
+      $('#startForm').hide();
       var gameInit = new GameInit();
       var gameController = new GameController(gameInit);
       
@@ -54,4 +84,5 @@
       
       window.onEachFrame(function() {
           gameController.update();
+      });
       });
