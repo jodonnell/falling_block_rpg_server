@@ -11,6 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20121001121633) do
+
+  create_table "outcomes", :force => true do |t|
+    t.integer "winner_id", :null => false
+    t.integer "loser_id",  :null => false
+  end
+
+  create_table "players", :force => true do |t|
+    t.string "name", :default => "", :null => false
+  end
 
 end
