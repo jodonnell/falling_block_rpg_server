@@ -1,12 +1,6 @@
 FallingBlockRpgServer::Application.routes.draw do
-  
-
   root :to => "home#index"
   match 'specs' => 'home#specs'
-  
-  devise_for :users
-  resources :users, :only => :show
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

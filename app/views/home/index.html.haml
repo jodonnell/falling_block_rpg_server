@@ -4,9 +4,11 @@
     = javascript_include_tag "falling_block_rpg/jquery"
     = javascript_include_tag "falling_block_rpg/class"
     = javascript_include_tag "falling_block_rpg/control"
+    = javascript_include_tag "falling_block_rpg/control1"
+    = javascript_include_tag "falling_block_rpg/control2"
+    = javascript_include_tag "falling_block_rpg/options"
     = javascript_include_tag "falling_block_rpg/game_init"
     = javascript_include_tag "falling_block_rpg/images"
-    = javascript_include_tag "falling_block_rpg/world_map"
     = javascript_include_tag "falling_block_rpg/game_controller"
     = javascript_include_tag "falling_block_rpg/combatant"
     = javascript_include_tag "falling_block_rpg/battle/block"
@@ -59,7 +61,7 @@
       var options = new Options($('#junk_on').is(':checked'), junkLines, $('#player_1').val(), $('#player_2').val());
       $('#startForm').hide();
       var gameInit = new GameInit();
-      var gameController = new GameController(gameInit);
+      var gameController = new GameController(gameInit, options);
       
       (function() {
           var onEachFrame;
